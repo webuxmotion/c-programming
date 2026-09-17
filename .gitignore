@@ -1,0 +1,49 @@
+# Prerequisites
+*.d
+
+# Object files and libraries
+*.o
+*.ko
+*.obj
+*.elf
+*.a
+*.lib
+*.la
+*.lo
+
+# Shared objects (dynamic libraries)
+*.so
+*.so.*
+*.dylib
+*.dll
+
+# Executables
+# (If your compiled output has a specific name like 'main', replace 'a.out' or add it below)
+a.out
+*.exe
+*.out
+*.app
+main
+
+# Build directories
+build/
+bin/
+obj/
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Developer / IDE Specific
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln
+*.vcxproj
+*.Xauthority
+
+# OS generated files
+.DS_Store
+Thumbs.db
