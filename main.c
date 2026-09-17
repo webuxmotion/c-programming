@@ -1,20 +1,29 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int main() {
-  FILE *pFile = fopen("files/input.txt", "r");
-  char buffer[1024] = {0};
+  int number = 0;
+  printf("Enter the number of grades: ");
+  scanf("%d", &number);
 
-  if (pFile == NULL) {
-    printf("Could not open file\n");
+  char *grades = malloc(number * sizeof(char));
 
+  if (grades == NULL) {
+    printf("Memory allocation failed\n");
     return 1;
   }
 
-  while(fgets(buffer, sizeof(buffer), pFile) != NULL) {
-    printf("%s", buffer);
+  for (int i = 0; i < number; i++) {
+    printf("Enter the grade #%d:", i);
+    scanf(" %c", &grades[i]);
   }
-  
-  fclose(pFile);
+
+  for (int i = 0; i < number; i++) {
+    printf("Grade #%d is: %c\n", i, grades[i]);
+  }
+
+  free(grades);
+  grades = NULL;
 
   return 0;
 }
