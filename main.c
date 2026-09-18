@@ -1,29 +1,38 @@
 #include <stdio.h>
-#include <stdlib.h>
 
-int main() {
-  int number = 0;
-  printf("Enter the number of grades: ");
-  scanf("%d", &number);
+int main()
+{
+  float fahr, celsius;
+  float lower, upper, step;
+  float lowerCelcius, upperCelcius, stepCelcius; 
 
-  char *grades = malloc(number * sizeof(char));
+  lower = 0.0f; 
+  upper = 300.0f; 
+  step = 20.0f;
 
-  if (grades == NULL) {
-    printf("Memory allocation failed\n");
-    return 1;
+  lowerCelcius = -50.0f;
+  upperCelcius = 150.0f;
+  stepCelcius = 10.0f;
+
+  fahr = lower;
+
+  printf("Fahrenheit to Celsius conversion table\n");
+
+  while (fahr <= upper) {
+    celsius = (5.0f / 9.0f) * (fahr - 32.0f);
+    printf("%3.0f\t%6.2f\n", fahr, celsius);
+    fahr = fahr + step;
   }
 
-  for (int i = 0; i < number; i++) {
-    printf("Enter the grade #%d:", i);
-    scanf(" %c", &grades[i]);
-  }
+  celsius = lowerCelcius;
 
-  for (int i = 0; i < number; i++) {
-    printf("Grade #%d is: %c\n", i, grades[i]);
-  }
+  printf("\nCelsius to Fahrenheit conversion table\n");
 
-  free(grades);
-  grades = NULL;
+  while (celsius <= upperCelcius) {
+    fahr = (celsius / (5.0f / 9.0f)) + 32.f;
+    printf("%6.0f\t%6.2f\n", celsius, fahr);
+    celsius += stepCelcius;
+  }
 
   return 0;
 }
