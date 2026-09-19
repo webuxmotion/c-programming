@@ -1,24 +1,20 @@
 #include <stdio.h>
-/* count digits, white space, others */
+int power(int m, int n);
+
 int main()
 {
-  int c, i, nwhite, nother;
-  int ndigit[10];
-  nwhite = nother = 0;
+  int i;
   for (i = 0; i < 10; ++i)
-    ndigit[i] = 0;
-  while ((c = getchar()) != 'x')
-    if (c >= '0' && c <= '9')
-      ++ndigit[c - '0'];
-    else if (c == ' ' || c == '\n' || c == '\t')
-      ++nwhite;
-    else
-      ++nother;
-  printf("digits =");
-  for (i = 0; i < 10; ++i)
-    printf(" %d", ndigit[i]);
-  printf(", white space = %d, other = %d\n",
-         nwhite, nother);
-
+    printf("%d %d %d\n", i, power(2, i), power(-2, i));
+    
   return 0;
+}
+
+int power(int base, int n)
+{
+  int p;
+ 
+  for (p = 1; n > 0; n--)
+    p = p * base;
+  return p;
 }
