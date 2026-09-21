@@ -1,17 +1,26 @@
 #include <stdio.h>
 
-void change_value(int *num);
+void swap(int *a, int *b);
 
-int main() {
-  int my_num;
+int main()
+{
+  int a, b;
 
-  my_num = 30;
-  change_value(&my_num);
-  printf("%d\n", my_num);
+  a = 20;
+  b = 99;
+
+  printf("a is %d, and b is %d\n", a, b);
+  swap(&a, &b);
+  printf("a is %d, and b is %d\n", a, b);
 
   return 0;
 }
 
-void change_value(int *num) {
-  *num = 100;
+void swap(int *a, int *b)
+{
+  int temp;
+
+  temp = *b;
+  *b = *a;
+  *a = temp;
 }
