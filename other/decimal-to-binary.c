@@ -1,39 +1,42 @@
 // gcc other/decimal-to-binary.c -o main && ./main
 #include <stdio.h>
 
+#define ARRAY_CAPACITY 32
+
+void convert(int *current, int reminder[], int *counter);
+
 int main()
 {
-  char binary[] = "101010011";
-  int total_size = sizeof(binary) / sizeof(binary[0]);
-  int bit_count = total_size - 1;
-  int cols[bit_count];
-  int decimal = 0;
+  int decimal = 32767;
 
-  printf("Binary to Decimal conversion\n");
+  int current = decimal;
+  int reminder[ARRAY_CAPACITY];
+  int counter = 0;
 
-  for (int i = 0; i < bit_count; i++)
+  convert(&current, reminder, &counter);
+
+  printf("Decimal %d in binary will be: ", decimal);
+  for (int i = counter - 1; i >= 0; i--)
   {
-    if (i == 0)
-    {
-      cols[i] = 1;
-    }
-    else
-    {
-      cols[i] = cols[i - 1] * 2;
-    }
+    printf("%d", reminder[i]);
   }
-
-  for (int i = (bit_count - 1); i >= 0; i--)
-  {
-    int binary_index = (bit_count - 1) - i;
-    printf("Weight: %3d => Біт: %c\n", cols[i], binary[binary_index]);
-    if (binary[binary_index] == '1')
-    {
-      decimal += cols[i];
-    }
-  }
-
-  printf("Decimal: %d\n", decimal);
+  printf("\n");
 
   return 0;
+}
+
+void convert(int *current, int reminder[], int *counter)
+{
+  if (*current != 0)
+  {
+    int currentReminder = *current % 2;
+    *current = *current / 2;
+    reminder[*counter] = currentReminder ? 1 : 0;
+    *counter += 1;
+
+    if (*current != 0)
+    {
+      convert(current, reminder, counter);
+    }
+  }
 }
