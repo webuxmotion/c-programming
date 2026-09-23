@@ -3,7 +3,7 @@
 
 int main()
 {
-  char binary[] = "111111111111111";
+  char binary[] = "11111110";
   int total_size = sizeof(binary) / sizeof(binary[0]);
   int bit_count = total_size - 1;
   int cols[bit_count];

@@ -7,7 +7,7 @@ void convert(int *current, int reminder[], int *counter);
 
 int main()
 {
-  int decimal = 32767;
+  int decimal = 254;
 
   int current = decimal;
   int reminder[ARRAY_CAPACITY];
