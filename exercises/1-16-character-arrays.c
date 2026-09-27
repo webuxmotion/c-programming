@@ -35,26 +35,34 @@ int main()
 int readline(char s[], int lim)
 {
   int c, i;
-  int maxPossibleIdx = 0;
 
   for (i = 0; (c = getchar()) != EOF && c != '\n'; ++i)
   {
     if (i < lim - 2)
     {
       s[i] = c;
-      ++maxPossibleIdx;
     }
   }
 
   if (c == '\n')
   {
-    s[maxPossibleIdx] = c;
-    ++maxPossibleIdx;
+    if (i < lim - 2)
+    {
+      s[i] = c;
+    }
+    ++i;
   }
 
-  s[maxPossibleIdx] = '\0';
+  if (i < lim)
+  {
+    s[i] = '\0';
+  }
+  else
+  {
+    s[lim - 1] = '\0';
+  }
 
-  return (i < lim) ? maxPossibleIdx : i;
+  return i;
 }
 
 void copy(char to[], char from[])
