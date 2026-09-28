@@ -28,7 +28,24 @@ int main()
   printf("Computed signed char: from %d to %d\n", -(int)((unsigned char)~0 / 2) - 1, (int)((unsigned char)~0 / 2));
   printf("Computed signed short: from %d to %d\n", -(int)((unsigned short)~0 / 2) - 1, (int)((unsigned short)~0 / 2));
   printf("Computed signed int: from %d to %d\n", -(int)((unsigned int)~0 / 2) - 1, (int)((unsigned int)~0 / 2));
-  printf("Computed signed long: from %d to %d\n", -(int)((unsigned long)~0 / 2) - 1, (int)((unsigned long)~0 / 2));
+  printf("Computed signed long: from %ld to %ld\n", -(long)((unsigned long)~0 / 2) - 1, (long)((unsigned long)~0 / 2));
+
+  // =========================================================================
+  // ОБЧИСЛЕННЯ FLOATING-POINT ЧЕРЕЗ БІТОВІ МАСКИ (IEEE 754)
+  // =========================================================================
+  printf("\n--- Floating-Point Direct Computations ---\n");
+
+  // Для float (32 біти):
+  // Знак (0) + Експонента майже макс (11111110) + Мантиса макс (усі 1) = 0x7F7FFFFF
+  unsigned int f_bits = 0x7F7FFFFF;
+  printf("Computed float max : %e\n", *(float *)&f_bits);
+
+  // Для double (64 біти):
+  // Знак (0) + Експонента майже макс (11111111110) + Мантиса макс (усі 1) = 0x7FEFFFFFFFFFFFFF
+  unsigned long long d_bits = 0x7FEFFFFFFFFFFFFFULL;
+  printf("Computed double max: %e\n", *(double *)&d_bits);
+
+  printf("%d\n", (0.1 + 0.2 == 0.3));
 
   return 0;
 }
